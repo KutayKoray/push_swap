@@ -46,36 +46,39 @@ void ss(t_stack *a, t_stack *b)
 	write(1, "ss\n", 3);
 }
 
-// Yığından bir öğe A'ya taşır (pa)
-void pa(t_stack *a, t_stack *b)
+#include <unistd.h>
+
+// Yığından bir öğeyi A'ya taşır (pa)
+void pa(t_stack **a, t_stack **b)
 {
-    if (b)
+    if (*b) // Eğer B boş değilse
     {
-        t_stack *temp = b;
-        b = b->next;
-        temp->next = a;
-        a = temp;
+        t_stack *temp = *b;     // B'nin ilk öğesini geçici olarak sakla
+        *b = (*b)->next;        // B'nin başını bir sonraki öğeye ilerlet
+        temp->next = *a;        // Taşınan öğeyi A'nın başına ekle
+        *a = temp;              // A'nın başı artık taşınan öğe
+        write(1, "pa\n", 3);    // İşlem adını yazdır
     }
-	write(1, "pa\n", 3);
 }
 
-// Yığından bir öğe B'ye taşır (pb)
-void pb(t_stack *a, t_stack *b)
+// Yığından bir öğeyi B'ye taşır (pb)
+void pb(t_stack **a, t_stack **b)
 {
-    if (a)
+    if (*a) // Eğer A boş değilse
     {
-        t_stack *temp = a;
-        a = a->next;
-        temp->next = b;
-        b = temp;
+        t_stack *temp = *a;     // A'nın ilk öğesini geçici olarak sakla
+        *a = (*a)->next;        // A'nın başını bir sonraki öğeye ilerlet
+        temp->next = *b;        // Taşınan öğeyi B'nin başına ekle
+        *b = temp;              // B'nin başı artık taşınan öğe
+        write(1, "pb\n", 3);    // İşlem adını yazdır
     }
-	write(1, "pb\n", 3);
 }
+
 
 // Hem A hem de B yığınlarını bir pozisyon aşağı kaydırır (rrr)
 void rrr(t_stack *a, t_stack *b)
 {
-    rra(a);
-    rrb(b);
+    rra(&a);
+    rrb(&b);
 	write(1, "rrr\n", 4);
 }
