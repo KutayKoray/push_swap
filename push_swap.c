@@ -6,7 +6,7 @@
 /*   By: kkoray <kkoray@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:47:02 by kkoray            #+#    #+#             */
-/*   Updated: 2024/11/27 17:39:53 by kkoray           ###   ########.fr       */
+/*   Updated: 2024/11/27 18:13:39 by kkoray           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,138 +15,126 @@
 #include <stdlib.h>
 
 // Yığın içeriğini ekrana yazdırma fonksiyonu
-void print_stack(t_stack *stack)
+void	print_stack(t_stack *stack)
 {
-    t_stack *temp = stack;
-    while (temp)
-    {
-        printf("%d ", temp->value);
-        temp = temp->next;
-    }
-    printf("\n");
+	t_stack	*temp;
+
+	temp = stack;
+	while (temp)
+	{
+		printf("%d ", temp->value);
+		temp = temp->next;
+	}
+	printf("\n");
 }
 
 // Argümanları stack'e ekleme fonksiyonu
-t_stack *create_stack(int argc, char **argv)
+t_stack	*create_stack(int argc, char **argv)
 {
-    t_stack *stack = NULL;
-    t_stack *new_node;
-    int i;
+	t_stack	*stack;
+	t_stack	*new_node;
+	int		i;
 
-    for (i = 1; i < argc; i++)
-    {
-        new_node = (t_stack *)malloc(sizeof(t_stack));
-        if (!new_node)
-			return NULL;
-        new_node->value = atoi(argv[i]);
-        new_node->next = stack;
-        stack = new_node;
-    }
-    return stack;
+	stack = NULL;
+	for (i = 1; i < argc; i++)
+	{
+		new_node = (t_stack *)malloc(sizeof(t_stack));
+		if (!new_node)
+			return (NULL);
+		new_node->value = atoi(argv[i]);
+		new_node->next = stack;
+		stack = new_node;
+	}
+	return (stack);
 }
 
 // Stack'te eleman sayısı sayma
-int stack_size(t_stack *stack)
+int	stack_size(t_stack *stack)
 {
-    int size = 0;
-    while (stack)
-    {
-        size++;
-        stack = stack->next;
-    }
-    return size;
+	int		size;
+	t_stack	*tmp;
+
+	size = 0;
+	tmp = stack;
+	while (tmp)
+	{
+		size++;
+		tmp = tmp->next;
+	}
+	return (size);
 }
 
-int get_last_value(t_stack *stack)
+int	get_last_value(t_stack *stack)
 {
-	while (stack->next)
-		stack = stack->next;
-	return stack->value;
+	t_stack	*tmp;
+
+	tmp = stack;
+	while (tmp->next)
+		tmp = tmp->next;
+	return (tmp->value);
 }
 
-// Stack'in sıralı olup olmadığını kontrol etme
-int is_sorted(t_stack *a)
+int	is_sorted(t_stack *a)
 {
-    // Stack boşsa veya tek elemanlıysa, zaten sıralıdır
-    if (!a || !a->next)
-        return 1;
+	t_stack	*tmp;
 
-    // Stack'teki her elemanı kontrol et
-    t_stack *tmp = a;
-    while (tmp->next)
-    {
-        // Eğer bir eleman sonraki elemandan büyükse, sıralı değil demektir
-        if (tmp->value > tmp->next->value)
-            return 0;
-        tmp = tmp->next;
-    }
-
-    // Eğer tüm elemanlar sıralıysa, 1 döndür
-    return 1;
+	if (!a || !a->next)
+		return (1);
+	tmp = a;
+	while (tmp->next)
+	{
+		if (tmp->value > tmp->next->value)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
 }
 
-void sort_stack(t_stack **a, t_stack **b)
+void	sort_stack(t_stack **a, t_stack **b)
 {
-    t_stack *tmp;
-    
-    // A stack'inin sıralanmadığı sürece işlemi devam ettir
-    while (!is_sorted(*a)) // A stack'inin sıralı olup olmadığını kontrol et
-    {
-        tmp = *a;
+	t_stack	*tmp;
 
-        // A stack'inde her elemanı kontrol et
-        while (tmp && tmp->next)
-        {
-            // Koşulları kontrol et ve uygun işlemi yap
-            if (tmp->value > tmp->next->value && tmp->value < get_last_value(*a))
-            {
-                sa(*a); // Swap işlemi
-            }
-            else if (tmp->value < tmp->next->value && tmp->value > get_last_value(*a))
-            {
-                rra(*a); // Reverse rotate işlemi
-            }
-            else if (tmp->value < tmp->next->value && tmp->value < get_last_value(*a))
-            {
-                pb(*a, *b); // Elemanı B'ye gönder
-            }
-            else
-            {
-                ra(*a); // Rotate işlemi
-            }
-            tmp = tmp->next;
-        }
-
-        // B stack'ini sıralayıp A'ya geri gönder
-        while (!is_sorted(*b)) // B stack'ini sıralayıp A'ya geri gönder
-        {
-            // B stack'inde tersine işlemleri yaparak A'ya gönder
-            if ((*b)->value < get_last_value(*a))
-                pa(*a, *b); // B'den A'ya eleman taşır
-            else
-                rb(*b); // B'yi rotate et
-        }
-
-        // A stack'inin sıralanmadığı sürece devam et
-        if (is_sorted(*a))
-            break; // Eğer A sıralandıysa, işlemi bitir
-    }
+	while (!is_sorted(*a))
+	{
+		tmp = *a;
+		while (tmp && tmp->next)
+		{
+			if (tmp->value > tmp->next->value
+				&& tmp->value < get_last_value(*a))
+				sa(*a);
+			else if (tmp->value < tmp->next->value
+				&& tmp->value > get_last_value(*a))
+				rra(*a);
+			else if (tmp->value < tmp->next->value
+				&& tmp->value < get_last_value(*a))
+				pb(*a, *b);
+			else
+				ra(*a);
+			tmp = tmp->next;
+		}
+		while (!is_sorted(*b))
+		{
+			if ((*b)->value < get_last_value(*a))
+				pa(*a, *b);
+			else
+				rb(*b);
+		}
+		if (is_sorted(*a))
+			break ;
+	}
 }
 
-
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    t_stack *a = NULL;
-    t_stack *b = NULL;
+	t_stack	*a;
+	t_stack	*b;
 
+	a = NULL;
+	b = NULL;
 	a = create_stack(argc, argv);
-
 	print_stack(a);
-	
 	sort_stack(&a, &b);
-
 	print_stack(a);
 	print_stack(b);
-
-    return 0;
+	return (0);
 }
