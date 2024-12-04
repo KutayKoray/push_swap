@@ -6,7 +6,7 @@
 /*   By: kkoray <kkoray@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:47:02 by kkoray            #+#    #+#             */
-/*   Updated: 2024/11/27 18:13:39 by kkoray           ###   ########.fr       */
+/*   Updated: 2024/12/04 18:28:28 by kkoray           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 #include <stdlib.h>
 
 // Yığın içeriğini ekrana yazdırma fonksiyonu
-void	print_stack(t_stack *stack)
+void	print_node(t_node *stack)
 {
-	t_stack	*temp;
+	t_node	*temp;
 
 	temp = stack;
 	while (temp)
@@ -29,30 +29,33 @@ void	print_stack(t_stack *stack)
 }
 
 // Argümanları stack'e ekleme fonksiyonu
-t_stack	*create_stack(int argc, char **argv)
+t_node	*create_stack(int argc, char **argv)
 {
-	t_stack	*stack;
-	t_stack	*new_node;
+	t_node	*stack;
+	t_node	*temp;
 	int		i;
 
-	stack = NULL;
-	for (i = 1; i < argc; i++)
+	i = 1;
+	stack = (t_node *)malloc(sizeof(t_node));
+	stack->value = atoi(argv[i]);
+	stack->next = NULL;
+	i++;
+	while (i < argc)
 	{
-		new_node = (t_stack *)malloc(sizeof(t_stack));
-		if (!new_node)
-			return (NULL);
-		new_node->value = atoi(argv[i]);
-		new_node->next = stack;
-		stack = new_node;
+		temp = (t_node *)malloc(sizeof(t_node));
+		temp->value = atoi(argv[i]);
+		temp->next = stack;
+		stack = temp;
+		i++;
 	}
 	return (stack);
 }
 
 // Stack'te eleman sayısı sayma
-int	stack_size(t_stack *stack)
+int	stack_size(t_node *stack)
 {
 	int		size;
-	t_stack	*tmp;
+	t_node	*tmp;
 
 	size = 0;
 	tmp = stack;
@@ -64,9 +67,9 @@ int	stack_size(t_stack *stack)
 	return (size);
 }
 
-int	get_last_value(t_stack *stack)
+int	get_last_value(t_node *stack)
 {
-	t_stack	*tmp;
+	t_node	*tmp;
 
 	tmp = stack;
 	while (tmp->next)
@@ -74,9 +77,9 @@ int	get_last_value(t_stack *stack)
 	return (tmp->value);
 }
 
-int	is_sorted(t_stack *a)
+int	is_sorted(t_node *a)
 {
-	t_stack	*tmp;
+	t_node	*tmp;
 
 	if (!a || !a->next)
 		return (1);
@@ -90,77 +93,42 @@ int	is_sorted(t_stack *a)
 	return (1);
 }
 
-void	sort_stack(t_stack **a, t_stack **b)
+void sort(t_stack *stack, int size)
 {
-	t_stack	*tmp_a;
-	t_stack	*tmp_b;
-	int count = 0;
-
-	while (!is_sorted(*a))
+	if (!is_sorted(stack->a))
 	{
-		tmp_a = *a;
-		tmp_b = *b;
-		while (!is_sorted(*a))
-		{
-			if ((*a)->value > (*a)->next->value && (*a)->value > get_last_value((*a)))
-					sa(*a);
-			else if ((*a)->value > (*a)->next->value && (*a)->value < get_last_value((*a)))
-					ra(a);
-			else if ((*a)->value < (*a)->next->value && (*a)->value > get_last_value((*a)))
-					rra(a);
-			else if ((*a)->value < (*a)->next->value && (*a)->value < get_last_value((*a)))
-					pb(a, b);
-			count++;
-			if (is_sorted(*a))
-				break;
-		}
-		while (!is_sorted(*b))
-		{
-			if ((*b)->value > (*b)->next->value && (*b)->value > get_last_value((*b)))
-				sb(*b);
-			else if ((*b)->value > (*b)->next->value && (*b)->value < get_last_value((*b)))
-				rb(b);
-			else if ((*b)->value < (*b)->next->value && (*b)->value > get_last_value((*b)))
-				rrb(b);
-			else if ((*b)->value < (*b)->next->value && (*b)->value < get_last_value((*b)))
-				pa(a, b);
-			count++;
-			if (is_sorted(*b))
-				break;
-		}
-		while (*b)
-		{
-			rrb(b);
-			pa(a, b);
-			count += 2;
-		}
+		if (size == 2)
+			sa(stack->a);
+		else if (size == 3)
+			sort_three(stack);
+		else
+			sort_init(stack, size);
 	}
-	printf("count: %d\n", count);
 }
 
 int	main(int argc, char **argv)
 {
-	t_stack	*a;
-	t_stack	*b;
+	t_stack	*stack;
 
-	a = NULL;
-	b = NULL;
+	stack->a = create_stack(argc, argv);
+	stack->b = malloc(sizeof(t_node));
+	stack->a_size = stack_size(stack->a);
+	stack->b_size = 0;
+	
+	// printf("a: \n");
+	// printf("%d\n", stack->a_size);
+	// printf("%d: \n", is_sorted(stack->a));
 
-	a = create_stack(argc, argv);
+	sort(stack, stack->a_size);	
 
-	printf("is_sorted(a): %d\n", is_sorted(a));
-	printf("is_sorted(b): %d\n", is_sorted(b));
 
-	print_stack(a);
-	print_stack(b);	
+	// print_node(stack->a);
+	// print_node(stack->b);
 
-	sort_stack(&a, &b);
+	
 
-	print_stack(a);
-	print_stack(b);
 
-	// print the first element of the stack a and b
-	printf("a->value: %d\n", a->value);
+	
 
 
 	return (0);

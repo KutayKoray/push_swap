@@ -6,7 +6,7 @@
 /*   By: kkoray <kkoray@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 13:42:17 by kkoray            #+#    #+#             */
-/*   Updated: 2024/11/27 16:00:44 by kkoray           ###   ########.fr       */
+/*   Updated: 2024/12/04 15:46:29 by kkoray           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,26 @@
 #include <stddef.h>
 #include <unistd.h>
 
-void ra(t_stack **a) {
-    if (*a && (*a)->next) {
-        t_stack *first = *a;
-        t_stack *last = *a;
+void ra(t_node *a) {
+    if (a && (a)->next) 
+	{
+        t_node *first = a;
+        t_node *last = a;
 
-        // Yığının sonuna kadar git
         while (last->next)
             last = last->next;
 
-        // İlk düğümü sona taşı
-        *a = first->next;  // Orijinal 'a' güncellenir
+        a = first->next;
         first->next = NULL;
         last->next = first;
+		write(1, "ra\n", 3);
     }
-    write(1, "ra\n", 3);
 }
 
-void rb(t_stack **b) {
+void rb(t_node **b) {
     if (*b && (*b)->next) {
-        t_stack *first = *b;
-        t_stack *last = *b;
+        t_node *first = *b;
+        t_node *last = *b;
 
         // Yığının sonuna kadar git
         while (last->next)
@@ -50,20 +49,20 @@ void rb(t_stack **b) {
 
 
 // Hem A hem de B yığınlarını bir pozisyon yukarı kaydırır (rr)
-void rr(t_stack *a, t_stack *b)
+void rr(t_node *a, t_node *b)
 {
-    ra(&a);
+    ra(a);
     rb(&b);
 	write(1, "rr\n", 3);
 }
 
 // A yığınının tüm öğelerini bir pozisyon aşağı kaydırır (rra)
-void rra(t_stack **a)
+void rra(t_node **a)
 {
     if (*a && (*a)->next)
     {
-        t_stack *last = *a;
-        t_stack *second_last = NULL;
+        t_node *last = *a;
+        t_node *second_last = NULL;
 
         // Yığının sonuna kadar git
         while (last->next)
@@ -81,12 +80,12 @@ void rra(t_stack **a)
 }
 
 // B yığınının tüm öğelerini bir pozisyon aşağı kaydırır (rrb)
-void rrb(t_stack **b)
+void rrb(t_node **b)
 {
     if (*b && (*b)->next)
     {
-        t_stack *last = *b;
-        t_stack *second_last = NULL;
+        t_node *last = *b;
+        t_node *second_last = NULL;
 
         // Yığının sonuna kadar git
         while (last->next)

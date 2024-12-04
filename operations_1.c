@@ -6,7 +6,7 @@
 /*   By: kkoray <kkoray@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 13:41:59 by kkoray            #+#    #+#             */
-/*   Updated: 2024/11/27 15:59:49 by kkoray           ###   ########.fr       */
+/*   Updated: 2024/12/01 20:16:36 by kkoray           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <unistd.h>
 
 // Yığındaki üstteki iki öğeyi takas eder (sa)
-void sa(t_stack *a)
+void sa(t_node *a)
 {
     if (a && a->next)
     {
@@ -27,7 +27,7 @@ void sa(t_stack *a)
 }
 
 // Yığındaki üstteki iki öğeyi takas eder (sb)
-void sb(t_stack *b)
+void sb(t_node *b)
 {
     if (b && b->next)
     {
@@ -39,7 +39,7 @@ void sb(t_stack *b)
 }
 
 // Hem A hem de B yığınlarındaki üst öğeleri takas eder (ss)
-void ss(t_stack *a, t_stack *b)
+void ss(t_node *a, t_node *b)
 {
     sa(a);
     sb(b);
@@ -49,34 +49,38 @@ void ss(t_stack *a, t_stack *b)
 #include <unistd.h>
 
 // Yığından bir öğeyi A'ya taşır (pa)
-void pa(t_stack **a, t_stack **b)
+void pa(t_stack *stack)
 {
-    if (*b) // Eğer B boş değilse
-    {
-        t_stack *temp = *b;     // B'nin ilk öğesini geçici olarak sakla
-        *b = (*b)->next;        // B'nin başını bir sonraki öğeye ilerlet
-        temp->next = *a;        // Taşınan öğeyi A'nın başına ekle
-        *a = temp;              // A'nın başı artık taşınan öğe
-        write(1, "pa\n", 3);    // İşlem adını yazdır
-    }
+	if (stack->b)
+	{
+		t_node *temp = stack->b;
+		stack->b = stack->b->next;
+		temp->next = stack->a;
+		stack->a = temp;
+		stack->a_size++;
+		stack->b_size--;
+		write(1, "pa\n", 3);
+	}
 }
 
 // Yığından bir öğeyi B'ye taşır (pb)
-void pb(t_stack **a, t_stack **b)
+void pb(t_stack *stack)
 {
-    if (*a) // Eğer A boş değilse
-    {
-        t_stack *temp = *a;     // A'nın ilk öğesini geçici olarak sakla
-        *a = (*a)->next;        // A'nın başını bir sonraki öğeye ilerlet
-        temp->next = *b;        // Taşınan öğeyi B'nin başına ekle
-        *b = temp;              // B'nin başı artık taşınan öğe
-        write(1, "pb\n", 3);    // İşlem adını yazdır
-    }
+	if (stack->a)
+	{
+		t_node *temp = stack->a;
+		stack->a = stack->a->next;
+		temp->next = stack->b;
+		stack->b = temp;
+		stack->a_size--;
+		stack->b_size++;
+		write(1, "pb\n", 3);
+	}
 }
 
 
 // Hem A hem de B yığınlarını bir pozisyon aşağı kaydırır (rrr)
-void rrr(t_stack *a, t_stack *b)
+void rrr(t_node *a, t_node *b)
 {
     rra(&a);
     rrb(&b);
