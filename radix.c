@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int get_max_bits(t_data *data)
+static int get_max_bits(t_data *data)
 {
 	int *tmp_arr;
 	int max;

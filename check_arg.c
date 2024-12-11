@@ -1,8 +1,11 @@
+#include "push_swap.h"
 #include <limits.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 void	ft_error(void)
 {
-	write(2, "Error", 5);
+	write(2, "Error\n", 6);
 	exit(0);
 }
 
@@ -43,21 +46,18 @@ static int	ft_isnum(char *num)
 	return (1);
 }
 
-void	check_args(int ac, char **av)
+void	check_arg(int ac, char **av)
 {
-	int i;
-	long num;
-	char **tab;
+	int		i;
+	long	num;
+	char	**tab;
 
 	i = 0;
-	if (ac == 2)
+	if (ac == 2 && --i)
 		tab = ft_split(av[1], ' ');
 	else
-	{
-		i = 1;
 		tab = av;
-	}
-	while (tab[i])
+	while (tab[++i])
 	{
 		if (!ft_isnum(tab[i]))
 			ft_error();
@@ -66,8 +66,7 @@ void	check_args(int ac, char **av)
 			ft_error();
 		if (num < INT_MIN || num > INT_MAX)
 			ft_error();
-		i++;
 	}
 	if (ac == 2)
-		ft_free_str(tab);
+		free_str(tab);
 }

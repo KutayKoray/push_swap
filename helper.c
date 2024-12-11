@@ -1,9 +1,9 @@
 #include "push_swap.h"
 #include <stdlib.h>
 
-int stack_len(t_data *data, char label)
+int	stack_len(t_data *data, char label)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (label == 'a')
@@ -13,9 +13,9 @@ int stack_len(t_data *data, char label)
 	return (i);
 }
 
-int is_sorted(t_data *data, char label)
+static int	is_sorted(t_data *data, char label)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (label == 'a' && stack_len(data, 'a') > 1)
@@ -39,9 +39,9 @@ int is_sorted(t_data *data, char label)
 	return (1);
 }
 
-int is_full_sorted(t_data *data)
+static int	is_full_sorted(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < data->size)
@@ -55,10 +55,12 @@ int is_full_sorted(t_data *data)
 
 int	*bubble_sort(int *arr, int size)
 {
-	int	i = 0;
+	int	i;
 	int	tmp_val;
-	int	*tmp_arr = malloc(sizeof(int) * size);
+	int	*tmp_arr;
 
+	i = 0;
+	tmp_arr = malloc(sizeof(int) * size);
 	while (i < size)
 	{
 		tmp_arr[i] = arr[i];
@@ -70,7 +72,7 @@ int	*bubble_sort(int *arr, int size)
 		if (tmp_arr[i] > tmp_arr[i + 1])
 		{
 			tmp_val = tmp_arr[i];
-			tmp_arr[i] = tmp_arr[i+ 1];
+			tmp_arr[i] = tmp_arr[i + 1];
 			tmp_arr[i + 1] = tmp_val;
 			i = 0;
 		}
@@ -82,9 +84,9 @@ int	*bubble_sort(int *arr, int size)
 
 int	*replace(int *arr, int *arr_sorted, int size)
 {
-	int	*new_arr = malloc(sizeof(int) * size);
-	int	i = 0; //for arr
-	int n = 0; //for new_arr
+	int *new_arr = malloc(sizeof(int) * size);
+	int i = 0; // for arr
+	int n = 0; // for new_arr
 
 	while (i < size)
 	{
@@ -100,6 +102,6 @@ int	*replace(int *arr, int *arr_sorted, int size)
 		}
 		i++;
 	}
-	
-	return(new_arr);
+
+	return (new_arr);
 }
