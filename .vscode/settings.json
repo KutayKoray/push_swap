@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.razor": "aspnetcorerazor",
+        "push_swap.h": "c"
+    }
+}

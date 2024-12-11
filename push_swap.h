@@ -1,35 +1,26 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: kkoray <kkoray@student.42kocaeli.com.tr    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 14:40:51 by kkoray            #+#    #+#             */
-/*   Updated: 2024/11/27 16:57:19 by kkoray           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-// Stack node structure
-typedef struct s_stack
+typedef struct s_data
 {
-	int				value;
-	struct s_stack	*next;
-}					t_stack;
+	int *arr;
+	int size;
+	int up;
+	int down;
+} t_data;
 
-void				sa(t_stack *a);
-void				sb(t_stack *b);
-void				ss(t_stack *a, t_stack *b);
-void				pa(t_stack **a, t_stack **b);
-void				pb(t_stack **a, t_stack **b);
-void				ra(t_stack **a);
-void				rb(t_stack **b);
-void				rr(t_stack *a, t_stack *b);
-void				rra(t_stack **a);
-void				rrb(t_stack **b);
-void				rrr(t_stack *a, t_stack *b);
+void swap(t_data *data, char label);
+void rotate(t_data *data, char label);
+void reverse_rotate(t_data *data, char label);
+void push(t_data *data, char label);
+
+int	*replace(int *arr, int *arr_sorted, int size);
+int	*bubble_sort(int *arr, int size);
+int is_full_sorted(t_data *data);
+int is_sorted(t_data *data, char label);
+int stack_len(t_data *data, char label);
+
+void radix(t_data *data);
+int get_max_bits(t_data *data);
 
 #endif
