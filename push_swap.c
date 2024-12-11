@@ -83,9 +83,9 @@ int	main(int argc, char **argv)
 	tmp_arr = bubble_sort(data->arr, data->size);
 	new_arr = replace(data->arr, tmp_arr, data->size);
 	data->arr = new_arr;
-    // print_data(data);
+    print_data(data);
 	radix(data);
-	// print_data(data);
+	print_data(data);
 }
 
 // int	main(void)
