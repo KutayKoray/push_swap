@@ -3,24 +3,29 @@
 
 typedef struct s_data
 {
-	int *arr;
-	int size;
-	int up;
-	int down;
-} t_data;
+	int	*arr;
+	int	size;
+	int	up;
+	int	down;
+}		t_data;
 
-void swap(t_data *data, char label);
-void rotate(t_data *data, char label);
-void reverse_rotate(t_data *data, char label);
-void push(t_data *data, char label);
+void	swap(t_data *data, char label);
+void	rotate(t_data *data, char label);
+void	reverse_rotate(t_data *data, char label);
+void	push(t_data *data, char label);
 
-int	*replace(int *arr, int *arr_sorted, int size);
-int	*bubble_sort(int *arr, int size);
-int is_full_sorted(t_data *data);
-int is_sorted(t_data *data, char label);
-int stack_len(t_data *data, char label);
+int		*replace(int *arr, int *arr_sorted, int size);
+int		*bubble_sort(int *arr, int size);
+int		is_full_sorted(t_data *data);
+int		is_sorted(t_data *data, char label);
+int		stack_len(t_data *data, char label);
 
-void radix(t_data *data);
-int get_max_bits(t_data *data);
+void	radix(t_data *data);
+int		get_max_bits(t_data *data);
+
+int		ft_atoi(const char *str);
+char	**ft_split(char const *s, char c);
+
+void	ft_error(void);
 
 #endif
