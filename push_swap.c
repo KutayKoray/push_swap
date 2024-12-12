@@ -22,11 +22,9 @@ void	print_data(t_data *data) // silinecek
 
 int get_argv_size(int argc, char **argv)
 {
-	int	i;
 	int size;
 	char **tmp_arr;
 
-	i = 0;
 	if (argc == 2)
 	{
 		size = 0;
@@ -80,12 +78,13 @@ int	main(int argc, char **argv)
 	data->size = get_argv_size(argc, argv);
 	data->up = -1;
 	data->down = 0;
+    // print_data(data);
 	tmp_arr = bubble_sort(data->arr, data->size);
 	new_arr = replace(data->arr, tmp_arr, data->size);
 	data->arr = new_arr;
-    print_data(data);
+    // print_data(data);
 	radix(data);
-	print_data(data);
+	// print_data(data);
 }
 
 // int	main(void)

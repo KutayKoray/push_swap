@@ -13,45 +13,45 @@ int	stack_len(t_data *data, char label)
 	return (i);
 }
 
-static int	is_sorted(t_data *data, char label)
-{
-	int	i;
+// static int	is_sorted(t_data *data, char label)
+// {
+// 	int	i;
 
-	i = 0;
-	if (label == 'a' && stack_len(data, 'a') > 1)
-	{
-		while (i < data->size - data->down)
-		{
-			if (data->arr[data->down + i] > data->arr[data->down + i + 1])
-				return (0);
-			i++;
-		}
-	}
-	else if (label == 'b' && stack_len(data, 'b') > 1)
-	{
-		while (i < data->up)
-		{
-			if (data->arr[data->up - i] < data->arr[data->up - i - 1])
-				return (0);
-			i++;
-		}
-	}
-	return (1);
-}
+// 	i = 0;
+// 	if (label == 'a' && stack_len(data, 'a') > 1)
+// 	{
+// 		while (i < data->size - data->down)
+// 		{
+// 			if (data->arr[data->down + i] > data->arr[data->down + i + 1])
+// 				return (0);
+// 			i++;
+// 		}
+// 	}
+// 	else if (label == 'b' && stack_len(data, 'b') > 1)
+// 	{
+// 		while (i < data->up)
+// 		{
+// 			if (data->arr[data->up - i] < data->arr[data->up - i - 1])
+// 				return (0);
+// 			i++;
+// 		}
+// 	}
+// 	return (1);
+// }
 
-static int	is_full_sorted(t_data *data)
-{
-	int	i;
+// static int	is_full_sorted(t_data *data)
+// {
+// 	int	i;
 
-	i = 0;
-	while (i < data->size)
-	{
-		if (data->arr[i] > data->arr[i + 1])
-			return (0);
-		i++;
-	}
-	return (1);
-}
+// 	i = 0;
+// 	while (i < data->size)
+// 	{
+// 		if (data->arr[i] > data->arr[i + 1])
+// 			return (0);
+// 		i++;
+// 	}
+// 	return (1);
+// }
 
 int	*bubble_sort(int *arr, int size)
 {
