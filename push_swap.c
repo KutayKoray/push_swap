@@ -31,7 +31,7 @@ int get_argv_size(int argc, char **argv)
 	{
 		size = 0;
 		tmp_arr = ft_split(argv[1], ' ');
-		while (tmp_arr[size++]);
+		while (tmp_arr[++size]);
 		free_str(tmp_arr);
 	}
 	else
