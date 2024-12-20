@@ -6,13 +6,6 @@ SRCS	= check_arg.c free.c ft_atoi.c ft_split.c helper.c \
 		push_swap.c radix.c sort_three.c utils.c
 OBJS	= $(SRCS:.c=.o)
 
-ifeq ($(shell uname), Linux)
-	CHECKER = ./checkers/checker_linux
-else
-	CHECKER = ./checkers/checker_Mac
-endif
-ARGS = "4 67 3 87 23"
-
 all: $(NAME)
 
 $(NAME): $(OBJS)
@@ -26,10 +19,4 @@ fclean: clean
 
 re: fclean all
 
-test: all
-	@./push_swap $(ARGS)
-
-test_with_checker: all
-	@./push_swap $(ARGS) | $(CHECKER) $(ARGS)
-
-.PHONY: all clean fclean re test test_with_checker
+.PHONY: all clean fclean re
