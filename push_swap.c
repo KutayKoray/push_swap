@@ -58,7 +58,7 @@ static int	*init_arr(int argc, char **argv)
 	}
 	arr = malloc(sizeof(int) * size);
 	while (tmp_arr[++i])
-		arr[i] = ft_atoi(tmp_arr[i]);
+		arr[i - 1] = ft_atoi(tmp_arr[i]);
 	if (argc == 2)
 		free_str(tmp_arr);
 	return (arr);
