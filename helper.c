@@ -39,19 +39,19 @@ int	stack_len(t_data *data, char label)
 // 	return (1);
 // }
 
-// static int	is_full_sorted(t_data *data)
-// {
-// 	int	i;
+int	is_sorted(t_data *data)
+{
+	int	i;
 
-// 	i = 0;
-// 	while (i < data->size)
-// 	{
-// 		if (data->arr[i] > data->arr[i + 1])
-// 			return (0);
-// 		i++;
-// 	}
-// 	return (1);
-// }
+	i = 0;
+	while (i < data->size - 1)
+	{
+		if (data->arr[i] > data->arr[i + 1])
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 int	*bubble_sort(int *arr, int size)
 {
