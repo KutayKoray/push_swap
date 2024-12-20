@@ -20,7 +20,7 @@ void	print_data(t_data *data) // silinecek
 	printf("down: %d\n", data->down);
 }
 
-int get_argv_size(int argc, char **argv)
+static int get_argv_size(int argc, char **argv)
 {
 	int size;
 	char **tmp_arr;
@@ -64,11 +64,19 @@ static int	*init_arr(int argc, char **argv)
 	return (arr);
 }
 
+static void sort_init(t_data *data)
+{
+	int	*tmp_arr;
+	int	*new_arr;
+
+	tmp_arr = bubble_sort(data->arr, data->size);
+	new_arr = replace(data->arr, tmp_arr, data->size);
+	data->arr = new_arr;
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	*data;
-	int		*tmp_arr;
-	int		*new_arr;
 
 	if (argc < 2)
 		return (-1);
@@ -79,36 +87,10 @@ int	main(int argc, char **argv)
 	data->up = -1;
 	data->down = 0;
     // print_data(data);
-	tmp_arr = bubble_sort(data->arr, data->size);
-	new_arr = replace(data->arr, tmp_arr, data->size);
-	data->arr = new_arr;
-    // print_data(data);
+
 	radix(data);
 	// print_data(data);
 }
-
-// int	main(void)
-// {
-// 	t_data	*data;
-// 	int		arr[] = {58, 43, 80, 34, 4, 16, 61, 6, 42};
-// 	int		i;
-// 	int		*tmp_arr;
-// 	int		*new_arr;
-
-// 	// sorted_arr = {4, 6, 16, 34, 42, 43, 58, 61, 80}
-// 	data = malloc(sizeof(t_data));
-// 	data->arr = arr;
-// 	data->size = 9;
-// 	data->up = -1;
-// 	data->down = 0;
-// 	tmp_arr = bubble_sort(data->arr, data->size);
-// 	new_arr = replace(data->arr, tmp_arr, data->size);
-// 	data->arr = new_arr;
-// 	print_data(data);
-// 	radix(data);
-// 	print_data(data);
-
-// }
 
 // error handling
 // init stack
