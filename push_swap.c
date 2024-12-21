@@ -6,7 +6,7 @@
 /*   By: kkoray <kkoray@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 13:33:38 by kkoray            #+#    #+#             */
-/*   Updated: 2024/12/21 13:47:29 by kkoray           ###   ########.fr       */
+/*   Updated: 2024/12/21 13:51:56 by kkoray           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,3 @@ int	main(int argc, char **argv)
 	sort_init(data);
 	free(data->arr);
 }
-	
