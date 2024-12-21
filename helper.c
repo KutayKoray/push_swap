@@ -84,13 +84,17 @@ int	*bubble_sort(int *arr, int size)
 
 int	*replace(int *arr, int *arr_sorted, int size)
 {
-	int *new_arr = malloc(sizeof(int) * size);
-	int i = 0; // for arr
-	int n = 0; // for new_arr
+	int	*new_arr;
+	int	i;
+	int	n;
+	int	j;
 
+	n = 0;
+	i = 0;
+	new_arr = malloc(sizeof(int) * size);
 	while (i < size)
 	{
-		int j = 0; // for arr_sorted
+		j = 0;
 		while (j < size)
 		{
 			if (arr[i] == arr_sorted[j])
@@ -102,6 +106,5 @@ int	*replace(int *arr, int *arr_sorted, int size)
 		}
 		i++;
 	}
-
 	return (new_arr);
 }

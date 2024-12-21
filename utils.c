@@ -1,9 +1,9 @@
 #include "push_swap.h"
 #include <unistd.h>
 
-void swap(t_data *data, char label)
+void	swap(t_data *data, char label)
 {
-	int tmp;
+	int	tmp;
 
 	if (data->up > 0 && label == 'b')
 	{
@@ -21,10 +21,10 @@ void swap(t_data *data, char label)
 	}
 }
 
-void rotate(t_data *data, char label)
+void	rotate(t_data *data, char label)
 {
-	int tmp;
-	int i;
+	int	tmp;
+	int	i;
 
 	i = -1;
 	if (data->down < data->size - 1 && label == 'a')
@@ -40,16 +40,15 @@ void rotate(t_data *data, char label)
 		tmp = data->arr[data->up];
 		while (data->up - ++i > 0)
 			data->arr[data->up - i] = data->arr[data->up - i - 1];
-
 		data->arr[0] = tmp;
 		write(1, "rb\n", 3);
 	}
 }
 
-void reverse_rotate(t_data *data, char label)
+void	reverse_rotate(t_data *data, char label)
 {
-	int tmp;
-	int i;
+	int	tmp;
+	int	i;
 
 	i = -1;
 	if (data->down < data->size - 1 && label == 'a')
@@ -69,7 +68,8 @@ void reverse_rotate(t_data *data, char label)
 		write(1, "rrb\n", 4);
 	}
 }
-void push(t_data *data, char label)
+
+void	push(t_data *data, char label)
 {
 	if (data->up + 1 > 0 && label == 'a')
 	{

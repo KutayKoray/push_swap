@@ -1,41 +1,40 @@
 #include "push_swap.h"
 #include <stdlib.h>
 
-/*
-void	print_data(t_data *data) // silinecek
-{
-	int	i;
+// #include <stdio.h>
+// void	print_data(t_data *data)
+// {
+// 	int	i;
 
-	i = 0;
-	printf("arr: [");
-	while (i < data->size)
-	{
-		printf(" %d", data->arr[i]);
-		if (i == data->up)
-			printf(" |");
-		i++;
-	}
-	printf(" ]\n");
-	printf("up: %d\n", data->up);
-	printf("down: %d\n", data->down);
-}
-*/
+// 	i = 0;
+// 	printf("arr: [");
+// 	while (i < data->size)
+// 	{
+// 		printf(" %d", data->arr[i]);
+// 		if (i == data->up)
+// 			printf(" |");
+// 		i++;
+// 	}
+// 	printf(" ]\n");
+// 	printf("up: %d\n", data->up);
+// 	printf("down: %d\n", data->down);
+// }
 
-static int get_argv_size(int argc, char **argv)
+static int	get_argv_size(int argc, char **argv)
 {
-	int size;
-	char **tmp_arr;
+	int		size;
+	char	**tmp_arr;
 
 	if (argc == 2)
 	{
-		size = 0;
+		size = 1;
 		tmp_arr = ft_split(argv[1], ' ');
-		while (tmp_arr[++size]);
+		while (tmp_arr[size])
+			size++;
 		free_str(tmp_arr);
 	}
 	else
 		size = argc - 1;
-
 	return (size);
 }
 
@@ -65,7 +64,7 @@ static int	*init_arr(int argc, char **argv)
 	return (arr);
 }
 
-static void sort_init(t_data *data)
+static void	sort_init(t_data *data)
 {
 	int	*tmp_arr;
 	int	*new_arr;
@@ -100,9 +99,7 @@ int	main(int argc, char **argv)
 	data->size = get_argv_size(argc, argv);
 	data->up = -1;
 	data->down = 0;
-    // print_data(data);
 	sort_init(data);
-	// print_data(data);
 	free(data->arr);
 }
 

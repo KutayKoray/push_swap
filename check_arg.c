@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-void	ft_error(void)
+static void	ft_error(void)
 {
 	write(2, "Error\n", 6);
 	exit(0);

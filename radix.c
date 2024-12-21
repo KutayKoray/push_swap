@@ -1,17 +1,16 @@
 #include "push_swap.h"
 
-static int get_max_bits(t_data *data)
+static int	get_max_bits(t_data *data)
 {
-	int *tmp_arr;
-	int max;
-	int max_bits;
-	int i;
+	int	*tmp_arr;
+	int	max;
+	int	max_bits;
+	int	i;
 
 	i = 0;
 	tmp_arr = data->arr;
 	max = tmp_arr[0];
 	max_bits = 0;
-
 	while (i < data->size)
 	{
 		if (tmp_arr[i] > max)
@@ -23,11 +22,11 @@ static int get_max_bits(t_data *data)
 	return (max_bits);
 }
 
-void radix(t_data *data)
+void	radix(t_data *data)
 {
-	int max_bits;
-	int i;
-	int j;
+	int	max_bits;
+	int	i;
+	int	j;
 
 	max_bits = get_max_bits(data);
 	i = 0;
@@ -41,7 +40,6 @@ void radix(t_data *data)
 			else
 				push(data, 'b');
 			j++;
-
 		}
 		while (stack_len(data, 'b') > 0)
 		{

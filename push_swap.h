@@ -27,7 +27,6 @@ void	sort_four_and_five(t_data *data, int size);
 int		ft_atoi(const char *str);
 char	**ft_split(char const *s, char c);
 
-void	ft_error(void);
 void	check_arg(int ac, char **av);
 
 void	free_str(char **str);
