@@ -6,7 +6,7 @@
 /*   By: kkoray <kkoray@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 13:33:52 by kkoray            #+#    #+#             */
-/*   Updated: 2024/12/21 13:33:53 by kkoray           ###   ########.fr       */
+/*   Updated: 2024/12/21 15:37:22 by kkoray           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-static void	ft_error(void)
+void	ft_error(void)
 {
 	write(2, "Error\n", 6);
-	exit(0);
+	exit(1);
 }
 
 static int	ft_isdigit(int c)
@@ -30,12 +30,12 @@ static int	ft_isdigit(int c)
 	return (0);
 }
 
-static int	ft_isrepeat(int num, char **av, int i)
+static int	ft_isrepeat(long num, char **av, int i)
 {
 	i++;
 	while (av[i])
 	{
-		if (ft_atoi(av[i]) == num)
+		if (ft_atol(av[i]) == num)
 			return (1);
 		i++;
 	}
@@ -73,7 +73,7 @@ void	check_arg(int ac, char **av)
 	{
 		if (!ft_isnum(tab[i]))
 			ft_error();
-		num = ft_atoi(tab[i]);
+		num = ft_atol(tab[i]);
 		if (ft_isrepeat(num, tab, i))
 			ft_error();
 		if (num < INT_MIN || num > INT_MAX)

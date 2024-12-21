@@ -6,12 +6,28 @@
 /*   By: kkoray <kkoray@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 13:33:38 by kkoray            #+#    #+#             */
-/*   Updated: 2024/12/21 13:51:56 by kkoray           ###   ########.fr       */
+/*   Updated: 2024/12/21 15:40:45 by kkoray           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdlib.h>
+#include <unistd.h>
+
+void	free_data_and_exit(t_data *data)
+{
+	if (data->arr != NULL)
+	{
+		free(data->arr);
+		data->arr = NULL;
+	}
+	if (data != NULL)
+	{
+		free(data);
+		data = NULL;
+	}
+	ft_error();
+}
 
 static int	get_argv_size(int argc, char **argv)
 {
@@ -49,9 +65,11 @@ static int	*init_arr(int argc, char **argv)
 		size = argc - 1;
 	}
 	arr = malloc(sizeof(int) * size);
+	if (!arr)
+		return (NULL);
 	i = -1;
 	while (tmp_arr[++i])
-		arr[i] = ft_atoi(tmp_arr[i]);
+		arr[i] = (int)ft_atol(tmp_arr[i]);
 	if (argc == 2)
 		free_str(tmp_arr);
 	return (arr);
@@ -63,7 +81,12 @@ static void	sort_init(t_data *data)
 	int	*new_arr;
 
 	tmp_arr = bubble_sort(data->arr, data->size);
+	if (!tmp_arr)
+		free_data_and_exit(data);
 	new_arr = replace(data->arr, tmp_arr, data->size);
+	if (!new_arr)
+		free_data_and_exit(data);
+	free(data->arr);
 	data->arr = new_arr;
 	free(tmp_arr);
 	if (is_full_sorted(data) || data->size == 1)
@@ -88,10 +111,15 @@ int	main(int argc, char **argv)
 		return (-1);
 	check_arg(argc, argv);
 	data = malloc(sizeof(t_data));
+	if (!data)
+		ft_error();
 	data->arr = init_arr(argc, argv);
+	if (!data->arr)
+		free_data_and_exit(data);
 	data->size = get_argv_size(argc, argv);
 	data->up = -1;
 	data->down = 0;
 	sort_init(data);
 	free(data->arr);
+	free(data);
 }

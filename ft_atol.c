@@ -6,15 +6,15 @@
 /*   By: kkoray <kkoray@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 13:33:47 by kkoray            #+#    #+#             */
-/*   Updated: 2024/12/21 13:33:48 by kkoray           ###   ########.fr       */
+/*   Updated: 2024/12/21 15:33:59 by kkoray           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *str)
+long	ft_atol(const char *str)
 {
-	int	i;
-	int	sign;
-	int	nbr;
+	int		i;
+	int		sign;
+	long	nbr;
 
 	i = 0;
 	sign = 1;

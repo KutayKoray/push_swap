@@ -2,7 +2,7 @@ NAME	= push_swap
 
 CFLAGS	= -Wall -Wextra -Werror
 
-SRCS	= check_arg.c free.c ft_atoi.c ft_split.c helper.c \
+SRCS	= check_arg.c free.c ft_atol.c ft_split.c helper.c \
 		push_swap.c radix.c sort_three.c utils.c
 OBJS	= $(SRCS:.c=.o)
 

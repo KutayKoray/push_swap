@@ -6,7 +6,7 @@
 /*   By: kkoray <kkoray@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 13:33:49 by kkoray            #+#    #+#             */
-/*   Updated: 2024/12/21 13:33:50 by kkoray           ###   ########.fr       */
+/*   Updated: 2024/12/21 14:41:12 by kkoray           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ void	free_str(char **str)
 	while (str[i])
 		i++;
 	while (i >= 0)
-		free(str[i--]);
+	{
+		free(str[i]);
+		i--;
+	}
 	free(str);
 }

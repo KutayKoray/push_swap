@@ -6,7 +6,7 @@
 /*   By: kkoray <kkoray@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 13:33:41 by kkoray            #+#    #+#             */
-/*   Updated: 2024/12/21 13:33:42 by kkoray           ###   ########.fr       */
+/*   Updated: 2024/12/21 15:20:14 by kkoray           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,10 @@ int	*bubble_sort(int *arr, int size)
 	int	tmp_val;
 	int	*tmp_arr;
 
-	i = 0;
 	tmp_arr = malloc(sizeof(int) * size);
-	while (i < size)
-	{
-		tmp_arr[i] = arr[i];
-		i++;
-	}
+	if (!tmp_arr)
+		return (NULL);
+	ft_memcpy(tmp_arr, arr, size * sizeof(int));
 	i = 0;
 	while (i < (size - 1))
 	{
@@ -104,6 +101,8 @@ int	*replace(int *arr, int *arr_sorted, int size)
 	n = 0;
 	i = 0;
 	new_arr = malloc(sizeof(int) * size);
+	if (!new_arr)
+		return (NULL);
 	while (i < size)
 	{
 		j = 0;
