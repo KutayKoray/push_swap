@@ -6,7 +6,7 @@
 /*   By: kkoray <kkoray@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 13:33:52 by kkoray            #+#    #+#             */
-/*   Updated: 2024/12/21 15:37:22 by kkoray           ###   ########.fr       */
+/*   Updated: 2024/12/21 16:23:02 by kkoray           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-void	ft_error(void)
+void	ft_error(int argc, char **str)
 {
+	if (argc == 2)
+		free_str(str);
 	write(2, "Error\n", 6);
 	exit(1);
 }
@@ -72,12 +74,12 @@ void	check_arg(int ac, char **av)
 	while (tab[i])
 	{
 		if (!ft_isnum(tab[i]))
-			ft_error();
+			ft_error(ac, tab);
 		num = ft_atol(tab[i]);
 		if (ft_isrepeat(num, tab, i))
-			ft_error();
+			ft_error(ac, tab);
 		if (num < INT_MIN || num > INT_MAX)
-			ft_error();
+			ft_error(ac, tab);
 		i++;
 	}
 	if (ac == 2)

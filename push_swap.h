@@ -6,7 +6,7 @@
 /*   By: kkoray <kkoray@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 13:33:35 by kkoray            #+#    #+#             */
-/*   Updated: 2024/12/21 15:34:48 by kkoray           ###   ########.fr       */
+/*   Updated: 2024/12/21 16:21:51 by kkoray           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	**ft_split(char const *s, char c);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	check_arg(int ac, char **av);
 void	free_str(char **str);
-void	ft_error(void);
+void	ft_error(int ac, char **str);
 void	free_data_and_exit(t_data *data);
 
 #endif

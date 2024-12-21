@@ -6,7 +6,7 @@
 /*   By: kkoray <kkoray@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 13:33:38 by kkoray            #+#    #+#             */
-/*   Updated: 2024/12/21 15:40:45 by kkoray           ###   ########.fr       */
+/*   Updated: 2024/12/21 16:21:44 by kkoray           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	free_data_and_exit(t_data *data)
 		free(data);
 		data = NULL;
 	}
-	ft_error();
+	ft_error(0, NULL);
 }
 
 static int	get_argv_size(int argc, char **argv)
@@ -112,7 +112,7 @@ int	main(int argc, char **argv)
 	check_arg(argc, argv);
 	data = malloc(sizeof(t_data));
 	if (!data)
-		ft_error();
+		ft_error(0, NULL);
 	data->arr = init_arr(argc, argv);
 	if (!data->arr)
 		free_data_and_exit(data);
