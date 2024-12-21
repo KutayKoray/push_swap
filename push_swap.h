@@ -6,7 +6,7 @@
 /*   By: kkoray <kkoray@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 13:33:35 by kkoray            #+#    #+#             */
-/*   Updated: 2024/12/21 13:33:36 by kkoray           ###   ########.fr       */
+/*   Updated: 2024/12/21 13:56:32 by kkoray           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,13 @@ int		is_sorted(t_data *data, char label);
 int		*replace(int *arr, int *arr_sorted, int size);
 int		*bubble_sort(int *arr, int size);
 int		stack_len(t_data *data, char label);
-
 void	radix(t_data *data);
 void	sort_three(t_data *data);
 void	sort_four_and_five(t_data *data, int size);
 
 int		ft_atoi(const char *str);
 char	**ft_split(char const *s, char c);
-
 void	check_arg(int ac, char **av);
-
 void	free_str(char **str);
 
 #endif
