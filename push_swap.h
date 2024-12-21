@@ -14,7 +14,8 @@ void	rotate(t_data *data, char label);
 void	reverse_rotate(t_data *data, char label);
 void	push(t_data *data, char label);
 
-int		is_sorted(t_data *data);
+int		is_full_sorted(t_data *data);
+int		is_sorted(t_data *data, char label);
 int		*replace(int *arr, int *arr_sorted, int size);
 int		*bubble_sort(int *arr, int size);
 int		stack_len(t_data *data, char label);

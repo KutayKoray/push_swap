@@ -53,11 +53,11 @@ void	check_arg(int ac, char **av)
 	char	**tab;
 
 	i = 0;
-	if (ac == 2 && --i)
+	if (ac == 2)
 		tab = ft_split(av[1], ' ');
 	else
-		tab = av;
-	while (tab[++i])
+		tab = av + 1;
+	while (tab[i])
 	{
 		if (!ft_isnum(tab[i]))
 			ft_error();
@@ -66,6 +66,7 @@ void	check_arg(int ac, char **av)
 			ft_error();
 		if (num < INT_MIN || num > INT_MAX)
 			ft_error();
+		i++;
 	}
 	if (ac == 2)
 		free_str(tab);

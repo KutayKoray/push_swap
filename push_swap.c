@@ -1,7 +1,7 @@
 #include "push_swap.h"
-#include <stdio.h>
 #include <stdlib.h>
 
+/*
 void	print_data(t_data *data) // silinecek
 {
 	int	i;
@@ -19,6 +19,7 @@ void	print_data(t_data *data) // silinecek
 	printf("up: %d\n", data->up);
 	printf("down: %d\n", data->down);
 }
+*/
 
 static int get_argv_size(int argc, char **argv)
 {
@@ -73,7 +74,7 @@ static void sort_init(t_data *data)
 	new_arr = replace(data->arr, tmp_arr, data->size);
 	data->arr = new_arr;
 	free(tmp_arr);
-	if (is_sorted(data) || data->size == 1)
+	if (is_full_sorted(data) || data->size == 1)
 		return ;
 	else if (data->size == 2)
 		swap(data, 'a');
@@ -105,6 +106,5 @@ int	main(int argc, char **argv)
 	free(data->arr);
 }
 
-// error handling
-// init stack
 // static fonksiyonlara bak norm bak
+// sort_four is_sorted check

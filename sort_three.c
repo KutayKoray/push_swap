@@ -1,6 +1,5 @@
 #include "push_swap.h"
 #include <limits.h>
-#include <stdio.h>
 
 void	sort_three(t_data *data)
 {
@@ -65,10 +64,9 @@ void	move_min_to_b(t_data *data, int min_index, int size)
 	}
 	else if (min_index == 4)
 		reverse_rotate(data, 'a');
-	push(data, 'b');
+	if (!is_sorted(data, 'a'))
+		push(data, 'b');
 }
-
-// 0 2 3 4 1
 
 void	sort_four_and_five(t_data *data, int size)
 {
@@ -80,7 +78,8 @@ void	sort_four_and_five(t_data *data, int size)
 		find_min_and_index(data, &min, &min_index);
 		move_min_to_b(data, min_index, 4);
 		sort_three(data);
-		push(data, 'a');
+		if (!is_sorted(data, 'a'))
+			push(data, 'a');
 	}
 	if (size == 5)
 	{
@@ -89,7 +88,9 @@ void	sort_four_and_five(t_data *data, int size)
 		find_min_and_index(data, &min, &min_index);
 		move_min_to_b(data, min_index, 4);
 		sort_three(data);
-		push(data, 'a');
-		push(data, 'a');
+		if (!is_sorted(data, 'a'))
+			push(data, 'a');
+		if (!is_sorted(data, 'a'))
+			push(data, 'a');
 	}
 }
