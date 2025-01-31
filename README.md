@@ -1,9 +1,7 @@
 <div align="center">
-    <img src=".github/assets/push_swape.png" alt="push_swap badge">
+    <img src="https://github.com/ayogun/42-project-badges/blob/main/badges/push_swape.png?raw=true" alt="push_swap badge">
     <h1>push_swap</h1>
 </div>
-
-![norminette](https://github.com/lareii/push_swap/actions/workflows/norminette.yml/badge.svg)
 
 🖼️ Sorting numbers with an optimized stack-based algorithm.
 
