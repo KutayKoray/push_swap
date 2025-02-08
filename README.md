@@ -10,3 +10,6 @@ push_swap is an algorithmic project in the 42 curriculum designed to test a stud
 
 ## Contributing
 Contributions are welcome! If you would like to contribute to this project, please open a pull request.
+
+## Algorithm Visualized
+[pushswap-radix.webm](https://github.com/user-attachments/assets/20db68f3-2103-425f-8d0b-5c8544f066ae)
